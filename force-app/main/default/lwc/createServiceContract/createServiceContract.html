@@ -1,0 +1,15 @@
+<template>
+  <lightning-quick-action-panel
+    header="Create Service Contract"
+    class="slds-is-relative"
+  >
+    <div slot="footer"></div>
+
+    <template lwc:if={isSaving}>
+      <lightning-spinner
+        alternative-text="Saving"
+        variant="brand"
+      ></lightning-spinner>
+    </template>
+  </lightning-quick-action-panel>
+</template>
