@@ -1,7 +1,7 @@
 public without sharing class ZendeskApiService {
 
     public static void getAllUsers() {
-        ZendeskApiHandler.ZendeskAPIResponseWrapper requestResult = ZendeskApiHandler.requestStripeApi(
+        ZendeskApiHandler.ZendeskAPIResponseWrapper requestResult = ZendeskApiHandler.requestZendeskApi(
 			'users.json',
 			'GET',
 			null
@@ -14,7 +14,7 @@ public without sharing class ZendeskApiService {
         zendeskUsers.addAll(resultWrapper?.users);
         Decimal numberOnIterates = resultWrapper?.count/100;
         for (Integer i = 2; i <= numberOnIterates.round(RoundingMode.HALF_UP) + 1; i++) {
-            ZendeskApiHandler.ZendeskAPIResponseWrapper nexPageRequestResult = ZendeskApiHandler.requestStripeApi(
+            ZendeskApiHandler.ZendeskAPIResponseWrapper nexPageRequestResult = ZendeskApiHandler.requestZendeskApi(
                 'users.json',
                 'GET',
                 new Map<String,String>{'page' => String.valueOf(i)}

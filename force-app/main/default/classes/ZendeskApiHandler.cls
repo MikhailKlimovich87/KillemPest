@@ -1,5 +1,5 @@
 public without sharing class ZendeskApiHandler {
-    private static final String ZENDESK_API_ENDPOINT = 'callout:Zendesk_API';
+    private static final String ZENDESK_API_ENDPOINT = 'callout:ZendeskApi';
 
 	/**
 	 * Sends a request to the Zendesk API using the provided endpoint and parameters
@@ -10,7 +10,7 @@ public without sharing class ZendeskApiHandler {
 	 * @return The response from the API as a string
 	 */
 
-	public static ZendeskAPIResponseWrapper requestStripeApi(String endpoint, String method, Map<String, String> params) {
+	public static ZendeskAPIResponseWrapper requestZendeskApi(String endpoint, String method, Map<String, String> params) {
 		HttpRequest httpRequest = new HttpRequest();
 		String apiUrl = ZENDESK_API_ENDPOINT + '/v2/' + endpoint;
 
@@ -20,7 +20,6 @@ public without sharing class ZendeskApiHandler {
 
 		httpRequest.setEndpoint(apiUrl);
 		httpRequest.setMethod(method);
-		httpRequest.setHeader('Authorization', 'Basic ' + '{!$Credential.Password}');
 
 		if (method == 'POST' || method == 'PUT') {
 			String requestBody = '';

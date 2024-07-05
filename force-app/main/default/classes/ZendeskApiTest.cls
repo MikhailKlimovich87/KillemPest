@@ -8,7 +8,7 @@ public class ZendeskApiTest {
             SELECT Id
             FROM Lead
         ];
-        System.assertEquals(0, leadsBeforeExecuteTestMethod.size(), 'List of leads is not empty');
+        Assert.areEqual(0, leadsBeforeExecuteTestMethod.size(), 'List of leads is not empty');
         Test.startTest();
         ZendeskApiService.getAllUsers();
         Test.stopTest();
@@ -16,13 +16,13 @@ public class ZendeskApiTest {
             SELECT Id
             FROM Lead
         ];
-        System.assertNotEquals(0, leadsAfterExecuteTestMethod.size(), 'The leads must be appear');
-        System.assertNotEquals(
+        Assert.areNotEqual(0, leadsAfterExecuteTestMethod.size(), 'The leads must be appear');
+        Assert.areNotEqual(
             leadsAfterExecuteTestMethod.size(),
             leadsBeforeExecuteTestMethod.size(),
             'The size of lead\'s list mustn\'t be the same after execute test method'
         );
-        System.assertEquals(3, leadsAfterExecuteTestMethod.size(),'The number of leads must be three');
+        Assert.areEqual(3, leadsAfterExecuteTestMethod.size(),'The number of leads must be three');
     }
 
     @IsTest
@@ -44,7 +44,7 @@ public class ZendeskApiTest {
             SELECT Id
             FROM Lead
         ];
-        System.assertEquals(1, leadsBeforeExecuteTestMethod.size(), 'Only one leads must be before execute test method');
+        Assert.areEqual(1, leadsBeforeExecuteTestMethod.size(), 'Only one leads must be before execute test method');
         Test.startTest();
         ZendeskApiService.getAllUsers();
         Test.stopTest();
@@ -52,20 +52,20 @@ public class ZendeskApiTest {
             SELECT Id
             FROM Lead
         ];
-        System.assertNotEquals(
+        Assert.areNotEqual(
             leadsAfterExecuteTestMethod.size(),
             leadsBeforeExecuteTestMethod.size(),
             'The size of lead\'s list mustn\'t be the same after execute test method'
         );
-        System.assertNotEquals(0, leadsAfterExecuteTestMethod.size(), 'The leads must be appear');
-        System.assertEquals(2, leadsAfterExecuteTestMethod.size(),'The number of leads must be two');
+        Assert.areNotEqual(0, leadsAfterExecuteTestMethod.size(), 'The leads must be appear');
+        Assert.areEqual(2, leadsAfterExecuteTestMethod.size(),'The number of leads must be two');
     }
 
     @IsTest
     static void queryPostRequestTest() {
         Test.setMock(HttpCalloutMock.class, new ZendeskServiceMock());
         Test.startTest();
-        ZendeskApiHandler.ZendeskAPIResponseWrapper resultWrapper = ZendeskApiHandler.requestStripeApi(
+        ZendeskApiHandler.ZendeskAPIResponseWrapper resultWrapper = ZendeskApiHandler.requestZendeskApi(
             'user',
             'POST',
             new Map<String, String>{
@@ -75,9 +75,9 @@ public class ZendeskApiTest {
             }
         );
         Test.stopTest();
-        System.assertEquals(null, resultWrapper.isError);
-        System.assertEquals(null, resultWrapper.errorMessage);
-        System.assertNotEquals(null, resultWrapper.responseBody);
+        Assert.areEqual(null, resultWrapper.isError);
+        Assert.areEqual(null, resultWrapper.errorMessage);
+        Assert.areNotEqual(null, resultWrapper.responseBody);
     }
 
     public class ZendeskServiceMock implements HttpCalloutMock {
