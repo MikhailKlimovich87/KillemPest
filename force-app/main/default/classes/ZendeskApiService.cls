@@ -41,7 +41,6 @@ public without sharing class ZendeskApiService {
                 searchData.put(user?.email, user);
             }
         }
-        System.debug('searchData === ' + searchData);
 
         List<Lead> repeatLeads = [
             SELECT
@@ -115,9 +114,9 @@ public without sharing class ZendeskApiService {
                 )
             );
         }
-        // if (!newLeads.isEmpty()) {
-        //     insert newLeads;
-        // }
+        if (!newLeads.isEmpty()) {
+            insert newLeads;
+        }
     }
     private class ZendeskListUserWrapper {
         private List<ZendeskUserWrapper> users;
